@@ -1,0 +1,6 @@
+version: '3.2'
+services:
+     cms:
+        image: barryhe/cms
+        ports:
+            - "5000:5000"
