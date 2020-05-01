@@ -2,6 +2,9 @@ import json
 from flask import Flask, request
 import dao
 from db import db
+import os 
+
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 app = Flask(__name__)
 db_filename = "cms.db"
@@ -22,6 +25,10 @@ def failure_response(message, code=404):
     return json.dumps({"success": False, "error": message}), code
 
 #courses
+@app.route('/')
+def hello_world():
+    return SECRET_KEY
+
 @app.route('/api/courses/')
 def get_courses():
     return success_response(dao.get_all_courses())
